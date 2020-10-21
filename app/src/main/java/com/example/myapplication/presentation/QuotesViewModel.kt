@@ -5,9 +5,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.myapplication.data.api.RefreshDataException
-import com.example.myapplication.data.quotes.QuotesRepository
-import com.example.myapplication.data.quotes.model.Quote
+import com.example.data.quotes.repository.QuotesRepository
+import com.example.domain.model.Quote
 import kotlinx.coroutines.InternalCoroutinesApi
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
@@ -17,12 +16,8 @@ class QuotesViewModel : ViewModel() {
 
     init {
         viewModelScope.launch {
-            try {
-                QuotesRepository().fetchQuotesAsFlow(true).collect {
-                    quotes = it
-                }
-            } catch (e: RefreshDataException) {
-                quotes = listOf(Quote("ERROR", "ERROR"))
+            QuotesRepository().fetchQuotesAsFlow(true).collect {
+                quotes = it
             }
         }
     }
