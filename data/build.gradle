@@ -1,5 +1,5 @@
 plugins {
-    id 'com.android.application'
+    id 'com.android.library'
     id 'kotlin-android'
 }
 
@@ -8,13 +8,13 @@ android {
     buildToolsVersion "30.0.2"
 
     defaultConfig {
-        applicationId "com.example.myapplication"
-        minSdkVersion 27
+        minSdkVersion 21
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
     }
 
     buildTypes {
@@ -29,38 +29,26 @@ android {
     }
     kotlinOptions {
         jvmTarget = '1.8'
-        useIR = true
-    }
-    buildFeatures {
-        compose true
-    }
-    composeOptions {
-        kotlinCompilerExtensionVersion compose_version
-        kotlinCompilerVersion '1.4.10'
     }
 }
 
 dependencies {
-    implementation project(path: ':data')
     implementation project(path: ':domain')
-
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation 'androidx.core:core-ktx:1.3.2'
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'com.google.android.material:material:1.2.1'
 
-    // Compose
-    implementation "androidx.compose.ui:ui:$compose_version"
-    implementation "androidx.compose.material:material:$compose_version"
-    implementation "androidx.compose.foundation:foundation-layout:$compose_version"
-    implementation "androidx.compose.ui:ui-text-android:$compose_version"
-    implementation "androidx.compose.foundation:foundation-text:$compose_version"
-    implementation "androidx.ui:ui-tooling:$compose_version" // not yet refactored, check it later
+    // Ktor
+    implementation "io.ktor:ktor-client-core:$ktor_version"
+    implementation "io.ktor:ktor-client-android:$ktor_version"
 
-    // Test
-    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.3.0-beta01'
-    implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.2.0"
-    implementation "androidx.fragment:fragment-ktx:1.2.5"
+    // Json
+    implementation "io.ktor:ktor-client-json-jvm:$ktor_version"
+    implementation "io.ktor:ktor-client-gson:$ktor_version"
+
+    // Logging
+    implementation "io.ktor:ktor-client-logging-jvm:$ktor_version"
 
     // Test
     testImplementation 'junit:junit:4.13.1'

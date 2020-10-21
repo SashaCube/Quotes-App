@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">My Application</string>
+
+    <string name="close">Close</string>
+    <string name="next">Next</string>
+    <string name="random_quote">Random Quote</string>
 </resources>

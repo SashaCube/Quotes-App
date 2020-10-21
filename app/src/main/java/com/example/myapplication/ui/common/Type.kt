@@ -1,4 +1,4 @@
-package com.example.myapplication.ui
+package com.example.myapplication.ui.common
 
 import androidx.compose.material.Typography
 import androidx.compose.ui.text.TextStyle
