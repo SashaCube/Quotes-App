@@ -24,4 +24,12 @@ class QuotesViewModel : ViewModel() {
 
     var quotes by mutableStateOf(listOf<Quote>())
         private set
+
+    var randomQuoteController by mutableStateOf(
+        RandomQuoteController(isOpened = false)
+    )
+
+    fun onRandomQuoteDialogFabClick() {
+        randomQuoteController = RandomQuoteController(quotes)
+    }
 }
