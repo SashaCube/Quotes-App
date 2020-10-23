@@ -30,6 +30,7 @@ fun DependencyHandlerScope.commonUiDependencies() {
 
 fun DependencyHandlerScope.roomDependencies() {
     implementation(Libs.Room.runtime)
+    implementation(Libs.Room.ktx)
     kapt(Libs.Room.compiler)
 }
 
