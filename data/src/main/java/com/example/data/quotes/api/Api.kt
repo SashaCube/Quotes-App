@@ -1,10 +1,8 @@
 package com.example.data.quotes.api
 
-import com.example.data.quotes.model.QuoteResponse
 import com.example.data.quotes.model.QuotesResponse
 import io.ktor.client.*
 import io.ktor.client.engine.android.*
-import io.ktor.client.features.*
 import io.ktor.client.features.json.*
 import io.ktor.client.features.logging.*
 import io.ktor.client.request.*

@@ -1,24 +1,29 @@
 package com.example.data.quotes.datasource
 
-import android.util.Log
+import android.content.Context
+import androidx.room.Room
+import com.example.data.quotes.database.AppDatabase
+import com.example.data.quotes.database.toEntity
+import com.example.data.quotes.database.toModel
 import com.example.domain.model.Quote
-import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.flow
 
-class QuotesDatabase : QuotesDataSource {
+class QuotesDatabase(context: Context) : QuotesDataSource {
 
-    override fun getQuotes(): Flow<List<Quote>> {
-        Log.i(TAG, "getQuotes")
-        return flow {
-            Quote("Quote from database", "Author")
+    private val db = Room.databaseBuilder(
+        context, AppDatabase::class.java, "database-name"
+    ).build()
+
+    override fun getQuotes() = flow {
+        db.quoteDao().getAll().collect {
+            emit(it.map { quoteEntity ->
+                quoteEntity.toModel()
+            })
         }
     }
 
     override suspend fun updateQuotes(quotes: List<Quote>) {
-        Log.i(TAG, "updateQuotes")
-    }
-
-    companion object {
-        private const val TAG = "QuotesDatabase"
+        db.quoteDao().insertAll(quotes.map { it.toEntity() })
     }
 }
