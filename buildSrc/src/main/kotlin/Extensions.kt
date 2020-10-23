@@ -28,6 +28,11 @@ fun DependencyHandlerScope.commonUiDependencies() {
     implementation(Libs.fragment)
 }
 
+fun DependencyHandlerScope.roomDependencies() {
+    implementation(Libs.Room.runtime)
+    kapt(Libs.Room.compiler)
+}
+
 fun DependencyHandlerScope.composeDependencies() {
     implementation(Libs.Compose.ui)
     implementation(Libs.Compose.material)

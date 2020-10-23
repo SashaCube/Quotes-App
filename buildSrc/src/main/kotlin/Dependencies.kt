@@ -20,6 +20,7 @@ object AndroidSdk {
 object Kotlin {
     const val android = "kotlin-android"
     const val extensions = "kotlin-android-extensions"
+    const val kapt = "kotlin-kapt"
 }
 
 object Android {
@@ -42,6 +43,7 @@ object Versions {
     const val kotlinVersion = "1.4.10"
     const val androidGradleVersion = "4.2.0-alpha14"
     const val coroutinesVersion = "1.3.9"
+    const val roomVersion = "2.2.5"
 }
 
 object BuildPlugins {
@@ -82,6 +84,11 @@ object Libs {
         const val jsonJvm = "io.ktor:ktor-client-json-jvm:${Versions.ktorVersion}"
         const val gson = "io.ktor:ktor-client-gson:${Versions.ktorVersion}"
         const val logger = "io.ktor:ktor-client-logging-jvm:${Versions.ktorVersion}"
+    }
+
+    object Room {
+        const val runtime = "androidx.room:room-runtime:${Versions.roomVersion}"
+        const val compiler = "androidx.room:room-compiler:${Versions.roomVersion}"
     }
 
     object Test {
