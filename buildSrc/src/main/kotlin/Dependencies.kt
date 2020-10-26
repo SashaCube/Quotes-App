@@ -28,6 +28,10 @@ object Android {
     const val library = "com.android.library"
 }
 
+object Koin {
+    const val plugin = "koin"
+}
+
 object Versions {
     const val composeVersion = "1.0.0-alpha05"
     const val ktorVersion = "1.4.1"
@@ -44,11 +48,13 @@ object Versions {
     const val androidGradleVersion = "4.2.0-alpha14"
     const val coroutinesVersion = "1.3.9"
     const val roomVersion = "2.2.5"
+    const val koinVersion = "2.2.0-rc-3"
 }
 
 object BuildPlugins {
     const val androidGradle = "com.android.tools.build:gradle:${Versions.androidGradleVersion}"
     const val kotlinGradle = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlinVersion}"
+    const val koin = "org.koin:koin-gradle-plugin:${Versions.koinVersion}"
 }
 
 object Libs {
@@ -90,6 +96,13 @@ object Libs {
         const val runtime = "androidx.room:room-runtime:${Versions.roomVersion}"
         const val compiler = "androidx.room:room-compiler:${Versions.roomVersion}"
         const val ktx = "androidx.room:room-ktx:${Versions.roomVersion}"
+    }
+
+    object Koin {
+        // Koin for Android
+        const val android = "org.koin:koin-android:${Versions.koinVersion}"
+        const val scope = "org.koin:koin-androidx-scope:${Versions.koinVersion}"
+        const val viewModel = "org.koin:koin-androidx-viewmodel:${Versions.koinVersion}"
     }
 
     object Test {
