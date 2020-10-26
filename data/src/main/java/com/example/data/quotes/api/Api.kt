@@ -21,7 +21,10 @@ internal val ktorClient = HttpClient(Android) {
 
 @KtorExperimentalAPI
 class QuotesApi(private val client: HttpClient = ktorClient) {
-    suspend fun getQuotes(): QuotesResponse = client.get(getQuotesUrl)
+    suspend fun getQuotes(skip: Int = 0): QuotesResponse =
+        client.get(getQuotesUrl) {
+            parameter("skip", skip)
+        }
 
     companion object {
         private const val getQuotesUrl = "https://api.quotable.io/quotes"

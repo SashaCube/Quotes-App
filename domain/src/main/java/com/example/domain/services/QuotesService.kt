@@ -5,7 +5,7 @@ import kotlinx.coroutines.flow.Flow
 
 interface QuotesService {
 
-    fun getQuotes(): Flow<List<Quote>>
+    fun getQuotes(skip: Int = 0): Flow<List<Quote>>
 
     suspend fun updateQuotes(quotes: List<Quote>)
 }

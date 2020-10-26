@@ -15,11 +15,15 @@ class QuotesDatabase(context: Context) : QuotesDataSource {
         context, AppDatabase::class.java, "database-name"
     ).build()
 
-    override fun getQuotes() = flow {
+    override fun getQuotes(skip: Int) = flow {
         db.quoteDao().getAll().collect {
-            emit(it.map { quoteEntity ->
-                quoteEntity.toModel()
-            })
+            emit(
+                it.filterIndexed { index, _ ->
+                    index >= skip
+                }.map { quoteEntity ->
+                    quoteEntity.toModel()
+                }
+            )
         }
     }
 
