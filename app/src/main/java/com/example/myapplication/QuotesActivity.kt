@@ -35,7 +35,12 @@ fun QuotesActivityScreen(quotesViewModel: QuotesViewModel) {
             RandomQuoteFab(quotesViewModel)
         },
         bodyContent = {
-            QuoteScreen(quotesViewModel.quotes)
+            QuoteScreen(
+                quotesViewModel.quotes,
+                onLastItemShowed = {
+                    quotesViewModel.getMoreQuotes()
+                }
+            )
         }
     )
 }

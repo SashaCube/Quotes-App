@@ -18,12 +18,14 @@ class QuotesRepository(
      * if [force] true, attempt to load data from remote data source,
      * else attempt to load data from local data source
      * If [force] true used remote, it caches data to local
+     *
+     * @param skip - The number of items to skip (for pagination).
      */
-    fun fetchQuotesAsFlow(force: Boolean = false): Flow<List<Quote>> = flow {
+    fun fetchQuotesAsFlow(force: Boolean = false, skip: Int = 0): Flow<List<Quote>> = flow {
         val dataSource = if (force) remote else local
 
         try {
-            val data = dataSource.getQuotes()
+            val data = dataSource.getQuotes(skip)
             data.collect {
                 withContext(Dispatchers.IO) {
                     if (force) local.updateQuotes(it)
@@ -32,7 +34,7 @@ class QuotesRepository(
             }
         } catch (e: Exception) {
             if (force) {
-                local.getQuotes().collect {
+                local.getQuotes(skip).collect {
                     emit(it)
                 }
             }

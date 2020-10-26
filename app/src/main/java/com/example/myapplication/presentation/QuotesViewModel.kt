@@ -38,4 +38,14 @@ class QuotesViewModel(application: Application) : AndroidViewModel(application) 
     fun onRandomQuoteDialogFabClick() {
         randomQuoteController = RandomQuoteController(quotes)
     }
+
+    fun getMoreQuotes() {
+        viewModelScope.launch {
+            QuotesRepository(
+                local = QuotesDatabase(context)
+            ).fetchQuotesAsFlow(true, skip = quotes.size).collect {
+                quotes = quotes + it
+            }
+        }
+    }
 }
