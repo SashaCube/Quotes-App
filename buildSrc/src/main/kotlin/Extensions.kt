@@ -34,6 +34,12 @@ fun DependencyHandlerScope.roomDependencies() {
     kapt(Libs.Room.compiler)
 }
 
+fun DependencyHandlerScope.koinDependencies() {
+    implementation(Libs.Koin.android)
+    implementation(Libs.Koin.scope)
+    implementation(Libs.Koin.viewModel)
+}
+
 fun DependencyHandlerScope.composeDependencies() {
     implementation(Libs.Compose.ui)
     implementation(Libs.Compose.material)

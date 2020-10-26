@@ -2,6 +2,7 @@ plugins {
     id(Android.application)
     id(Kotlin.android)
     id(Kotlin.extensions)
+    id(Koin.plugin)
 }
 
 androidApplicationConfig({
@@ -15,6 +16,8 @@ dependencies {
     kotlinStdLibDependencies()
     commonUiDependencies()
     composeDependencies()
+    koinDependencies()
+    ktorClientDependencies()
 
     unitTestDependencies()
     androidTestDependencies()
