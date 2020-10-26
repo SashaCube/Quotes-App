@@ -9,13 +9,13 @@ import com.example.domain.model.Quote
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.flow
 
-class QuotesDatabase(context: Context) : QuotesDataSource {
+class QuotesDatabase(context: Context) : QuotesLocalDataSource {
 
     private val db = Room.databaseBuilder(
         context, AppDatabase::class.java, "database-name"
     ).build()
 
-    override fun getQuotes(skip: Int) = flow {
+    override fun getQuotes(skip: Int, force: Boolean) = flow {
         db.quoteDao().getAll().collect {
             emit(
                 it.filterIndexed { index, _ ->

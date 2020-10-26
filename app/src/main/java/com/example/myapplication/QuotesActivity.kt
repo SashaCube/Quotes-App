@@ -1,7 +1,6 @@
 package com.example.myapplication
 
 import android.os.Bundle
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
@@ -11,11 +10,12 @@ import com.example.myapplication.ui.common.MyApplicationTheme
 import com.example.myapplication.ui.view.quote.QuoteScreen
 import com.example.myapplication.ui.view.random.RandomQuoteFab
 import kotlinx.coroutines.InternalCoroutinesApi
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 @InternalCoroutinesApi
 class QuotesActivity : AppCompatActivity() {
 
-    private val quotesViewModel by viewModels<QuotesViewModel>()
+    private val quotesViewModel: QuotesViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
