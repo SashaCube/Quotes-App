@@ -6,7 +6,7 @@ import androidx.compose.runtime.onActive
 import com.example.domain.model.Quote
 
 @Composable
-fun QuoteScreen(quotes: List<Quote> = listOf(), onLastItemShowed: () -> Unit = {}) {
+fun QuoteColumn(quotes: List<Quote> = listOf(), onLastItemShowed: () -> Unit = {}) {
     if (quotes.isNotEmpty()) {
         val lastIndex = quotes.lastIndex
         LazyColumnForIndexed(items = quotes) { index, item ->

@@ -31,6 +31,9 @@ class QuotesViewModel(application: Application) : AndroidViewModel(application) 
     var quotes by mutableStateOf(listOf<Quote>())
         private set
 
+    var moreQuotesAreLoading by mutableStateOf(false)
+        private set
+
     var randomQuoteController by mutableStateOf(
         RandomQuoteController(isOpened = false)
     )
@@ -41,10 +44,12 @@ class QuotesViewModel(application: Application) : AndroidViewModel(application) 
 
     fun getMoreQuotes() {
         viewModelScope.launch {
+            moreQuotesAreLoading = true
             QuotesRepository(
                 local = QuotesDatabase(context)
             ).fetchQuotesAsFlow(true, skip = quotes.size).collect {
                 quotes = quotes + it
+                moreQuotesAreLoading = false
             }
         }
     }
