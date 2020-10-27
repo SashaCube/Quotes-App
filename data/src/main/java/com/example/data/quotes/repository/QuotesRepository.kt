@@ -1,6 +1,6 @@
 package com.example.data.quotes.repository
 
-import com.example.data.quotes.datasource.QuotesDataSource
+import com.example.domain.QuotesDataSource
 import com.example.domain.model.Quote
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
