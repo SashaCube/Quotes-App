@@ -2,8 +2,14 @@ package com.example.myapplication
 
 import android.app.Application
 import com.example.data.quotes.api.QuotesApi
-import com.example.data.quotes.datasource.*
+import com.example.data.quotes.datasource.QuotesDatabase
+import com.example.data.quotes.datasource.QuotesLocalDataSource
+import com.example.data.quotes.datasource.QuotesRemote
+import com.example.data.quotes.datasource.QuotesRemoteDataSource
 import com.example.data.quotes.repository.QuotesRepository
+import com.example.domain.QuotesDataSource
+import com.example.domain.usecase.GetRandomQuoteInteractor
+import com.example.domain.usecase.GetRandomQuoteUseCase
 import com.example.myapplication.presentation.QuotesViewModel
 import kotlinx.coroutines.InternalCoroutinesApi
 import org.koin.android.ext.koin.androidContext
@@ -28,6 +34,10 @@ val repoModule = module {
     }
 }
 
+val useCaseModule = module {
+    single<GetRandomQuoteUseCase> { GetRandomQuoteInteractor(get()) }
+}
+
 @InternalCoroutinesApi
 val viewModelModule = module {
     viewModel {
@@ -42,7 +52,7 @@ class App : Application() {
         super.onCreate()
         startKoin {
             androidContext(this@App)
-            modules(listOf(appModule, repoModule, viewModelModule))
+            modules(listOf(appModule, repoModule, viewModelModule, useCaseModule))
         }
     }
 }
